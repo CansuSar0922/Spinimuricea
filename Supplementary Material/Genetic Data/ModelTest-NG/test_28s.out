@@ -1,0 +1,180 @@
+--------------------------------------------------------------------------------
+ModelTest-NG v0.2.0
+
+Input data:
+  MSA:        28s_curated.fasta
+  Tree:       Maximum parsimony
+    file:           -
+  #taxa:            29
+  #sites:           610
+  #patterns:        119
+  Max. thread mem:  1 MB
+
+Output:
+  Log:           test_28s.log
+  Starting tree: test_28s.tree
+  Results:       test_28s.out
+
+Selection options:
+  # dna schemes:      11
+  # dna models:       88
+  include model parameters:
+    Uniform:         true
+    p-inv (+I):      true
+    gamma (+G):      true
+    both (+I+G):     true
+    free rates (+R): false
+    fixed freqs:     true
+    estimated freqs: true
+    #categories:     4
+  gamma rates mode:   mean
+  asc bias:           none
+  epsilon (opt):      0.01
+  epsilon (par):      0.05
+  keep branches:      false
+
+Additional options:
+  verbosity:        very low
+  threads:          1/8
+  RNG seed:         12345
+  subtree repeats:  enabled
+--------------------------------------------------------------------------------
+
+BIC       model              K            lnL          score          delta    weight
+--------------------------------------------------------------------------------
+       1  TrN+G4             6     -1847.4618      4086.1447         0.0000    0.3177
+       2  HKY+G4             5     -1851.3584      4087.5244         1.3797    0.1594
+       3  TrN+I              6     -1848.4662      4088.1533         2.0086    0.1164
+       4  HKY+I              5     -1852.0010      4088.8096         2.6649    0.0838
+       5  TIM1+G4            7     -1845.6417      4088.9178         2.7731    0.0794
+       6  TPM1uf+G4          6     -1849.4227      4090.0663         3.9217    0.0447
+       7  TIM1+I             7     -1846.5657      4090.7659         4.6212    0.0315
+       8  TIM3+G4            7     -1846.6607      4090.9558         4.8112    0.0287
+       9  TPM1uf+I           6     -1849.9748      4091.1706         5.0260    0.0257
+      10  TrN+I+G4           7     -1847.0465      4091.7274         5.5828    0.0195
+--------------------------------------------------------------------------------
+Best model according to BIC
+---------------------------
+Model:              TrN+G4
+lnL:                -1847.4618
+Frequencies:        0.2095 0.2572 0.3264 0.2069
+Subst. Rates:       1.0000 3.6474 1.0000 1.0000 7.5411 1.0000 
+Inv. sites prop:    -
+Gamma shape:        0.2385
+Score:              4086.1447
+Weight:             0.3177
+---------------------------
+Parameter importances
+---------------------------
+P.Inv:              0.2874
+Gamma:              0.6734
+Gamma-Inv:          0.0392
+Frequencies:        0.9846
+---------------------------
+Model averaged estimates
+---------------------------
+P.Inv:              0.6392
+Alpha:              0.2342
+Alpha-P.Inv:        0.7852
+P.Inv-Alpha:        0.4285
+Frequencies:        0.2054 0.2613 0.3231 0.2103 
+
+Commands:
+  > phyml  -i 28s_curated.fasta -m 010020 -f m -v 0 -a e -c 4 -o tlr
+  > raxmlHPC-SSE3 -s 28s_curated.fasta -m GTRGAMMAX -n EXEC_NAME -p PARSIMONY_SEED
+  > raxml-ng --msa 28s_curated.fasta --model TrN+G4
+  > paup -s 28s_curated.fasta
+  > iqtree -s 28s_curated.fasta -m TrN+G4
+
+AIC       model              K            lnL          score          delta    weight
+--------------------------------------------------------------------------------
+       1  TIM1+G4            7     -1845.6417      3815.2833         0.0000    0.2288
+       2  TIM1+I+G4          8     -1845.2849      3816.5698         1.2865    0.1202
+       3  TrN+G4             6     -1847.4618      3816.9237         1.6403    0.1007
+       4  TIM1+I             7     -1846.5657      3817.1314         1.8481    0.0908
+       5  TIM3+G4            7     -1846.6607      3817.3214         2.0381    0.0826
+       6  TrN+I+G4           7     -1847.0465      3818.0930         2.8096    0.0561
+       7  GTR+G4             9     -1845.3036      3818.6073         3.3240    0.0434
+       8  TIM3+I+G4          8     -1846.3132      3818.6264         3.3431    0.0430
+       9  TIM2+G4            7     -1847.4656      3818.9313         3.6480    0.0369
+      10  TrN+I              6     -1848.4662      3818.9323         3.6490    0.0369
+--------------------------------------------------------------------------------
+Best model according to AIC
+---------------------------
+Model:              TIM1+G4
+lnL:                -1845.6417
+Frequencies:        0.2082 0.2590 0.3277 0.2051
+Subst. Rates:       1.0000 2.7130 0.4861 0.4861 5.5595 1.0000 
+Inv. sites prop:    -
+Gamma shape:        0.2342
+Score:              3815.2833
+Weight:             0.2288
+---------------------------
+Parameter importances
+---------------------------
+P.Inv:              0.2031
+Gamma:              0.5214
+Gamma-Inv:          0.2755
+Frequencies:        1.0000
+---------------------------
+Model averaged estimates
+---------------------------
+P.Inv:              0.6326
+Alpha:              0.2358
+Alpha-P.Inv:        0.7886
+P.Inv-Alpha:        0.4262
+Frequencies:        0.2083 0.2596 0.3264 0.2058 
+
+Commands:
+  > phyml  -i 28s_curated.fasta -m 012230 -f m -v 0 -a e -c 4 -o tlr
+  > raxmlHPC-SSE3 -s 28s_curated.fasta -m GTRGAMMAX -n EXEC_NAME -p PARSIMONY_SEED
+  > raxml-ng --msa 28s_curated.fasta --model TIM1+G4
+  > paup -s 28s_curated.fasta
+  > iqtree -s 28s_curated.fasta -m TIM1+G4
+
+AICc      model              K            lnL          score          delta    weight
+--------------------------------------------------------------------------------
+       1  TIM1+G4            7     -1845.6417      3829.2833         0.0000    0.2109
+       2  TrN+G4             6     -1847.4618      3829.9237         0.6403    0.1532
+       3  TIM1+I+G4          8     -1845.2849      3830.5698         1.2865    0.1109
+       4  TIM1+I             7     -1846.5657      3831.1314         1.8481    0.0837
+       5  TIM3+G4            7     -1846.6607      3831.3214         2.0381    0.0761
+       6  TrN+I              6     -1848.4662      3831.9323         2.6490    0.0561
+       7  TrN+I+G4           7     -1847.0465      3832.0930         2.8096    0.0518
+       8  TIM3+I+G4          8     -1846.3132      3832.6264         3.3431    0.0396
+       9  TIM2+G4            7     -1847.4656      3832.9313         3.6480    0.0340
+      10  TIM3+I             7     -1847.6990      3833.3980         4.1147    0.0270
+--------------------------------------------------------------------------------
+Best model according to AICc
+---------------------------
+Model:              TIM1+G4
+lnL:                -1845.6417
+Frequencies:        0.2082 0.2590 0.3277 0.2051
+Subst. Rates:       1.0000 2.7130 0.4861 0.4861 5.5595 1.0000 
+Inv. sites prop:    -
+Gamma shape:        0.2342
+Score:              3829.2833
+Weight:             0.2109
+---------------------------
+Parameter importances
+---------------------------
+P.Inv:              0.2116
+Gamma:              0.5410
+Gamma-Inv:          0.2474
+Frequencies:        1.0000
+---------------------------
+Model averaged estimates
+---------------------------
+P.Inv:              0.6338
+Alpha:              0.2359
+Alpha-P.Inv:        0.7724
+P.Inv-Alpha:        0.4234
+Frequencies:        0.2081 0.2596 0.3261 0.2062 
+
+Commands:
+  > phyml  -i 28s_curated.fasta -m 012230 -f m -v 0 -a e -c 4 -o tlr
+  > raxmlHPC-SSE3 -s 28s_curated.fasta -m GTRGAMMAX -n EXEC_NAME -p PARSIMONY_SEED
+  > raxml-ng --msa 28s_curated.fasta --model TIM1+G4
+  > paup -s 28s_curated.fasta
+  > iqtree -s 28s_curated.fasta -m TIM1+G4
+Done
